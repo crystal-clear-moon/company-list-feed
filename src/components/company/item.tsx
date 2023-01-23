@@ -22,7 +22,7 @@ import ActionButton from "./actionButtons";
 function Item({ item, setSelectedCompany }: { item: Company; setSelectedCompany: any }) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} sx={{ my: 1 }}>
-      <Card sx={{ mx: 1, height: "100%" }}>
+      <Card sx={{ mx: 1, height: "100%",display:"flex",flexDirection:"column",justifyContent:"space-between" }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -43,7 +43,7 @@ function Item({ item, setSelectedCompany }: { item: Company; setSelectedCompany:
           sx={{ alignItem: "center" }}
         />
         <CardContent sx={{ py: 0 }}>
-          <Box sx={{ textAlign: "center" }}>
+          <Box sx={{ textAlign: "center",display:"flex" }}>
             <Chip
               size={"small"}
               icon={<Person />}
@@ -69,19 +69,22 @@ function Item({ item, setSelectedCompany }: { item: Company; setSelectedCompany:
             {excerpt(item["HQ Location"], 35)}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing sx={{ justifyContent: "center" }}>
-          <ActionButton item={item} />
+        <CardActions disableSpacing sx={{ justifyContent: "center",p:0,flexDirection:"column" }}>
+          <Box sx={{textAlign:"center"}}>
+            <ActionButton item={item} />
+          </Box>
+          <Button
+              className={"no-top-radius"}
+              color={"primary"}
+              fullWidth={true}
+              sx={{ textTransform: "capitalize", display: "block", flex: 1 }}
+              variant={"contained"}
+              onClick={() => setSelectedCompany(item)}
+          >
+            More Details
+          </Button>
         </CardActions>
-        <Button
-          className={"no-top-radius"}
-          color={"primary"}
-          fullWidth={true}
-          sx={{ textTransform: "capitalize", display: "block", flex: 1 }}
-          variant={"contained"}
-          onClick={() => setSelectedCompany(item)}
-        >
-          More Details
-        </Button>
+
       </Card>
     </Grid>
   );
